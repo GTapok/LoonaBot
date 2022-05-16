@@ -53,11 +53,34 @@ async def photo(message: types.Message):
         await message.reply("Если вы хотите отправить арт на модерацию - пишите в личные сообщения с ботом.\n\n"
                             "If you want to send an art for moderation - write in private messages with the bot.")
 
+@dp.message_handler(content_types=["video"])
+async def video(message: types.Message):
+    if message.from_user.id == message.chat.id:
+        if message.from_user.id == 1527663110 or message.from_user.id == 862085756:
+            foto = message.video[-1].file_id
+            cap = "♡@LoonaHellBossArt"
+            await bot.send_video(-1001787348621, foto, caption=cap)
+            await message.reply("Я отправил видео на канал.")
+        else:
+            foto = message.video[-1].file_id
+            cap = f"Видео от пользователя <a href='tg://openmessage?user_id={message.from_user.id}'>{message.from_user.first_name}</a>, @{message.from_user.username}"
+            await bot.send_video(1527663110, foto, caption=cap)
+            await bot.send_video(862085756, foto, caption=cap)
+            users.UpVa("arts", 1, message.from_user.id)
+            users.conn.commit()
+            await message.reply("Видео было отправлено админам, ожидайте одобрения.\n\n"
+                                "The video has been sent to the admins, please wait for approval.")
+    else:
+        await message.reply("Если вы хотите отправить видео на модерацию - пишите в личные сообщения с ботом.\n\n"
+                            "If you want to send an video for moderation - write in private messages with the bot.")
+
+
 @dp.message_handler(commands=["profile"])
 async def profile(message: types.Message):
     for a in users.cur.execute(f"SELECT arts FROM users where id = {message.from_user.id}"):
         await message.reply(f"Content points: {a[0]}.\n"
                             f"Очки контента: {a[0]}")
+
 
 if __name__ == '__main__':
     executor.start_polling(dp, fast=True, skip_updates=True)
