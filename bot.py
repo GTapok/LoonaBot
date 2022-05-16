@@ -56,7 +56,8 @@ async def photo(message: types.Message):
 @dp.message_handler(commands=["profile"])
 async def profile(message: types.Message):
     for a in users.cur.execute(f"SELECT arts FROM users where id = {message.from_user.id}"):
-        await message.reply(f"Content points {a[0]}.")
+        await message.reply(f"Content points: {a[0]}.\n"
+                            f"Очки контента: {a[0]}")
 
 if __name__ == '__main__':
     executor.start_polling(dp, fast=True, skip_updates=True)
