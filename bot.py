@@ -57,12 +57,12 @@ async def photo(message: types.Message):
 async def video(message: types.Message):
     if message.from_user.id == message.chat.id:
         if message.from_user.id == 1527663110 or message.from_user.id == 862085756:
-            foto = message.video[-1].file_id
+            foto = message.video.file_id
             cap = "♡@LoonaHellBossArt"
             await bot.send_video(-1001787348621, foto, caption=cap)
             await message.reply("Я отправил видео на канал.")
         else:
-            foto = message.video[-1].file_id
+            foto = message.video.file_id
             cap = f"Видео от пользователя <a href='tg://openmessage?user_id={message.from_user.id}'>{message.from_user.first_name}</a>, @{message.from_user.username}"
             await bot.send_video(1527663110, foto, caption=cap)
             await bot.send_video(862085756, foto, caption=cap)
