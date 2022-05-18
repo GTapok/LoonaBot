@@ -83,6 +83,7 @@ async def ok(message: types.Message):
                 foto = await bot.get_file(document_id)
                 cap = "@LoonaHellBossArt ♡\n<a href='t.me/LoonaArtsBot'>Наш бот - Our bot</a>\n\n#photo"
                 await bot.send_photo(chat_id=-1001787348621, photo=foto.file_id, caption=cap)
+                await message.reply("Готово")
             except Exception as e:
                 await message.reply(f"В ответ на сообщение \n\n{e}")
         if message.reply_to_message.video:
@@ -90,6 +91,7 @@ async def ok(message: types.Message):
                 vid = message.reply_to_message.video.file_id
                 cap = "@LoonaHellBossArt ♡\n<a href='t.me/LoonaArtsBot'>Наш бот - Our bot</a>\n\n#video"
                 await bot.send_video(chat_id=-1001787348621, video=vid, caption=cap)
+                await message.reply("Готово")
             except Exception as e:
                 await message.reply(f"В ответ на сообщение\n\n{e}")
     else:
