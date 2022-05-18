@@ -37,7 +37,7 @@ async def photo(message: types.Message):
     if message.from_user.id == message.chat.id:
         if message.from_user.id == 1527663110 or message.from_user.id == 862085756:
             foto = message.photo[-1].file_id
-            cap = "♡@LoonaHellBossArt"
+            cap = "♡@LoonaHellBossArt\n\n#video"
             await bot.send_photo(-1001787348621, foto, caption=cap)
             await message.reply("Я отправил арт на канал.")
         else:
@@ -58,7 +58,7 @@ async def video(message: types.Message):
     if message.from_user.id == message.chat.id:
         if message.from_user.id == 1527663110 or message.from_user.id == 862085756:
             foto = message.video.file_id
-            cap = "♡@LoonaHellBossArt"
+            cap = "♡@LoonaHellBossArt\n\n#video"
             await bot.send_video(-1001787348621, foto, caption=cap)
             await message.reply("Я отправил видео на канал.")
         else:
