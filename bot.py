@@ -78,10 +78,10 @@ async def video(message: types.Message):
 @dp.message_handler(commands=["profile"])
 async def profile(message: types.Message):
     if message.from_user.id == 1527663110 or message.from_user.id == 862085756:
-        re = users.cur.execute(f"SELECT * FROM users").fetchall()
-        kol = len(re)
-        users.conn.commit()
-        await message.reply(kol)
+        a = users.cur.execute(f"SELECT arts FROM users")
+        koll = len(a)
+        await message.reply(koll)
+
     else:
         for a in users.cur.execute(f"SELECT arts FROM users where id = {message.from_user.id}"):
             await message.reply(f"Content points: {a[0]}.\n"
