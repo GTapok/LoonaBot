@@ -74,6 +74,25 @@ async def video(message: types.Message):
         await message.reply("Если вы хотите отправить видео на модерацию - пишите в личные сообщения с ботом.\n\n"
                             "If you want to send an video for moderation - write in private messages with the bot.")
 
+@dp.message_handler(commands=["ok"])
+async def ok(message: types.Message):
+    if message.from_user.id == 1527663110 or message.from_user.id == 862085756:
+        if message.reply_to_message.photo:
+            try:
+                document_id = message.reply_to_message.photo[0].file_id
+                foto = await bot.get_file(document_id)
+                cap = "@LoonaHellBossArt ♡\n<a href='t.me/LoonaArtsBot'>Наш бот - Our bot</a>\n\n#photo"
+                await bot.send_photo(chat_id=-1001787348621, photo=foto.file_id, caption=cap)
+            except Exception as e:
+                await message.reply(f"В ответ на сообщение \n\n{e}")
+        if message.reply_to_message.video:
+            try:
+                vid = message.reply_to_message.video.file_id
+                cap = "@LoonaHellBossArt ♡\n<a href='t.me/LoonaArtsBot'>Наш бот - Our bot</a>\n\n#video"
+                await bot.send_video(chat_id=-1001787348621, video=vid, caption=cap)
+            except Exception as e:
+                await message.reply(f"В ответ на сообщение\n\n{e}")
+
 
 @dp.message_handler(commands=["profile"])
 async def profile(message: types.Message):
