@@ -92,7 +92,8 @@ async def ok(message: types.Message):
                 await bot.send_video(chat_id=-1001787348621, video=vid, caption=cap)
             except Exception as e:
                 await message.reply(f"В ответ на сообщение\n\n{e}")
-
+    else:
+        pass
 
 @dp.message_handler(commands=["profile"])
 async def profile(message: types.Message):
