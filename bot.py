@@ -74,6 +74,27 @@ async def video(message: types.Message):
         await message.reply("Если вы хотите отправить видео на модерацию - пишите в личные сообщения с ботом.\n\n"
                             "If you want to send an video for moderation - write in private messages with the bot.")
 
+@dp.message_handler(content_types=["animation"])
+async def gif(message: types.Message):
+    if message.from_user.id == message.chat.id:
+        if message.from_user.id == 1527663110 or message.from_user.id == 862085756 or message.from_user.id == 795071883:
+            gif = message.animation.file_id
+            cap = "@LoonaHellBossArt ♡\n<a href='t.me/LoonaArtsBot'>Наш бот - Our bot</a>\n\n#gif"
+            await bot.send_animation(-1001787348621, gif, caption=cap)
+            await message.reply("Я отправил видео на канал.")
+        else:
+            gif = message.animation.file_id
+            cap = f"Гиф от пользователя <a href='tg://openmessage?user_id={message.from_user.id}'>{message.from_user.first_name}</a>, @{message.from_user.username}"
+            await bot.send_animation(1527663110, gif, caption=cap)
+            await bot.send_animation(862085756, gif, caption=cap)
+            users.UpVa("arts", 1, message.from_user.id)
+            users.conn.commit()
+            await message.reply("Гиф было отправлено админам, ожидайте одобрения.\n\n"
+                                "The gif has been sent to the admins, please wait for approval.")
+    else:
+        await message.reply("Если вы хотите отправить гиф на модерацию - пишите в личные сообщения с ботом.\n\n"
+                            "If you want to send an gif for moderation - write in private messages with the bot.")
+
 @dp.message_handler(commands=["ok"])
 async def ok(message: types.Message):
     if message.from_user.id == 1527663110 or message.from_user.id == 862085756 or message.from_user.id == 795071883:
@@ -92,6 +113,14 @@ async def ok(message: types.Message):
                 cap = "@LoonaHellBossArt ♡\n<a href='t.me/LoonaArtsBot'>Наш бот - Our bot</a>\n\n#video"
                 await bot.send_video(chat_id=-1001787348621, video=vid, caption=cap)
                 await message.reply("Готово")
+            except Exception as e:
+                await message.reply(f"В ответ на сообщение\n\n{e}")
+
+        if message.reply_to_message.animation:
+            try:
+                gif = message.reply_to_message.animation.file_id
+                cap = "@LoonaHellBossArt ♡\n<a href='t.me/LoonaArtsBot'>Наш бот - Our bot</a>\n\n#gif"
+                await bot.send_animation(chat_id=-1001787348621, animation=gif, caption=cap)
             except Exception as e:
                 await message.reply(f"В ответ на сообщение\n\n{e}")
     else:
