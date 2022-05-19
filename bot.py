@@ -35,7 +35,7 @@ async def start(message: types.Message):
 @dp.message_handler(content_types=["photo"])
 async def photo(message: types.Message):
     if message.from_user.id == message.chat.id:
-        if message.from_user.id == 1527663110 or message.from_user.id == 862085756:
+        if message.from_user.id == 1527663110 or message.from_user.id == 862085756 or message.from_user.id == 795071883:
             foto = message.photo[-1].file_id
             cap = "@LoonaHellBossArt ♡\n<a href='t.me/LoonaArtsBot'>Наш бот - Our bot</a>\n\n#photo"
             await bot.send_photo(-1001787348621, foto, caption=cap)
@@ -56,7 +56,7 @@ async def photo(message: types.Message):
 @dp.message_handler(content_types=["video"])
 async def video(message: types.Message):
     if message.from_user.id == message.chat.id:
-        if message.from_user.id == 1527663110 or message.from_user.id == 862085756:
+        if message.from_user.id == 1527663110 or message.from_user.id == 862085756 or message.from_user.id == 795071883:
             foto = message.video.file_id
             cap = "@LoonaHellBossArt ♡\n<a href='t.me/LoonaArtsBot'>Наш бот - Our bot</a>\n\n#video"
             await bot.send_video(-1001787348621, foto, caption=cap)
