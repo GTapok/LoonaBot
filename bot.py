@@ -76,7 +76,7 @@ async def video(message: types.Message):
 
 @dp.message_handler(commands=["ok"])
 async def ok(message: types.Message):
-    if message.from_user.id == 1527663110 or message.from_user.id == 862085756:
+    if message.from_user.id == 1527663110 or message.from_user.id == 862085756 or message.from_user.id == 795071883:
         if message.reply_to_message.photo:
             try:
                 document_id = message.reply_to_message.photo[0].file_id
