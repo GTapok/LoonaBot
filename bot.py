@@ -10,26 +10,13 @@ users.createDB()
 
 @dp.message_handler(commands=["start"])
 async def start(message: types.Message):
-    users.cur.execute(f"SELECT name FROM users where id = {message.from_user.id}")
-    if users.cur.fetchone() == None:
-        users.InsrtValue(message.from_user.first_name, message.from_user.id)
-        await message.reply("Привет!\n"
-                            "Этот бот сделан для канала @LoonaHellBossArt.\n"
-                            "Пришли мне арт, и я отправлю его на модерацию.\n"
-                            "Вы можете узнать количество ваших баллов контента нажав на /profile\n\n"
-                            "Sup\n"
-                            "This bot is made for the @LoonaHellBossArt channel.\n"
-                            "Send me the art and I'll send it for moderation.\n"
-                            "You can find out how many content points you have by clicking on /profile")
-    else:
-        await message.reply("Привет!\n"
-                            "Этот бот сделан для канала @LoonaHellBossArt.\n"
-                            "Пришли мне арт, и я отправлю его на модерацию.\n"
-                            "Вы можете узнать количество ваших баллов контента нажав на /profile\n\n"
-                            "Sup\n"
-                            "This bot is made for the @LoonaHellBossArt channel.\n"
-                            "Send me the art and I'll send it for moderation.\n"
-                            "You can find out how many content points you have by clicking on /profile")
+    await message.reply("Привет!\n"
+                        "Этот бот сделан для канала @LoonaHellBossArt.\n"
+                        "Пришли мне арт, и я отправлю его на модерацию.\n"
+                        "\n"
+                        "Sup\n"
+                        "This bot is made for the @LoonaHellBossArt channel.\n"
+                        "Send me the art and I'll send it for moderation.\n")
 
 @dp.message_handler(content_types=["photo"])
 async def photo(message: types.Message):
@@ -44,8 +31,6 @@ async def photo(message: types.Message):
             cap = f"Фото от пользователя <a href='tg://openmessage?user_id={message.from_user.id}'>{message.from_user.first_name}</a>, @{message.from_user.username}"
             await bot.send_photo(1527663110, foto, caption=cap)
             await bot.send_photo(862085756, foto, caption=cap)
-            users.UpVa("arts", 1, message.from_user.id)
-            users.conn.commit()
             await message.reply("Фото было отправлено админам, ожидайте одобрения.\n\n"
                                 "The photo has been sent to the admins, please wait for approval.")
     else:
@@ -65,8 +50,6 @@ async def video(message: types.Message):
             cap = f"Видео от пользователя <a href='tg://openmessage?user_id={message.from_user.id}'>{message.from_user.first_name}</a>, @{message.from_user.username}"
             await bot.send_video(1527663110, foto, caption=cap)
             await bot.send_video(862085756, foto, caption=cap)
-            users.UpVa("arts", 1, message.from_user.id)
-            users.conn.commit()
             await message.reply("Видео было отправлено админам, ожидайте одобрения.\n\n"
                                 "The video has been sent to the admins, please wait for approval.")
     else:
@@ -86,8 +69,6 @@ async def gif(message: types.Message):
             cap = f"Гиф от пользователя <a href='tg://openmessage?user_id={message.from_user.id}'>{message.from_user.first_name}</a>, @{message.from_user.username}"
             await bot.send_animation(1527663110, gif, caption=cap)
             await bot.send_animation(862085756, gif, caption=cap)
-            users.UpVa("arts", 1, message.from_user.id)
-            users.conn.commit()
             await message.reply("Гиф было отправлено админам, ожидайте одобрения.\n\n"
                                 "The gif has been sent to the admins, please wait for approval.")
     else:
@@ -108,8 +89,8 @@ async def send_sticker(message: types.Message):
             cap = f"Стикер от пользователя <a href='tg://openmessage?user_id={message.from_user.id}'>{message.from_user.first_name}</a>, @{message.from_user.username}"
             await bot.send_sticker(1527663110, st)
             await bot.send_sticker(862085756, st)
-            users.UpVa("arts", 1, message.from_user.id)
-            users.conn.commit()
+            await bot.send_message(862085756, cap)
+            await bot.send_video(1527663110, cap)
             await message.reply("Стикер был отправлен админам, ожидайте одобрения.\n\n"
                                 "The sticker has been sent to the admins, please wait for approval.")
     else:
@@ -147,17 +128,6 @@ async def ok(message: types.Message):
     else:
         pass
 
-@dp.message_handler(commands=["profile"])
-async def profile(message: types.Message):
-    if message.from_user.id == 1527663110 or message.from_user.id == 862085756:
-        re = users.cur.execute(f"SELECT id FROM users").fetchall()
-        kol = len(re)
-        users.conn.commit()
-        await message.reply(kol)
-    else:
-        for a in users.cur.execute(f"SELECT arts FROM users where id = {message.from_user.id}"):
-            await message.reply(f"Content points: {a[0]}.\n"
-                                f"Очки контента: {a[0]}")
 
 if __name__ == '__main__':
     executor.start_polling(dp, fast=True, skip_updates=True)
