@@ -102,6 +102,7 @@ async def send_sticker(message: types.Message):
             cap = "@LoonaHellBossArt ♡\n<a href='t.me/LoonaArtsBot'>Наш бот - Our bot</a>\n\n#sticker"
             a = await bot.send_sticker(-1001787348621, stick)
             await bot.send_message(-1001787348621, cap)
+            await message.reply("Готово")
         else:
             st = message.sticker.file_id
             cap = f"Стикер от пользователя <a href='tg://openmessage?user_id={message.from_user.id}'>{message.from_user.first_name}</a>, @{message.from_user.username}"
