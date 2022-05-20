@@ -31,7 +31,6 @@ async def start(message: types.Message):
                             "Send me the art and I'll send it for moderation.\n"
                             "You can find out how many content points you have by clicking on /profile")
 
-
 @dp.message_handler(content_types=["photo"])
 async def photo(message: types.Message):
     if message.from_user.id == message.chat.id:
@@ -94,6 +93,27 @@ async def gif(message: types.Message):
     else:
         await message.reply("Если вы хотите отправить гиф на модерацию - пишите в личные сообщения с ботом.\n\n"
                             "If you want to send an gif for moderation - write in private messages with the bot.")
+
+@dp.message_handler(content_types=["sticker"])
+async def send_sticker(message: types.Message):
+    if message.from_user.id == message.chat.id:
+        if message.from_user.id == 1527663110 or message.from_user.id == 862085756 or message.from_user.id == 795071883:
+            stick = message.sticker.file_id
+            cap = "@LoonaHellBossArt ♡\n<a href='t.me/LoonaArtsBot'>Наш бот - Our bot</a>\n\n#sticker"
+            a = await bot.send_sticker(-1001787348621, stick)
+            await bot.send_message(-1001787348621, cap)
+        else:
+            st = message.sticker.file_id
+            cap = f"Стикер от пользователя <a href='tg://openmessage?user_id={message.from_user.id}'>{message.from_user.first_name}</a>, @{message.from_user.username}"
+            await bot.send_sticker(1527663110, st)
+            await bot.send_sticker(862085756, st)
+            users.UpVa("arts", 1, message.from_user.id)
+            users.conn.commit()
+            await message.reply("Стикер был отправлен админам, ожидайте одобрения.\n\n"
+                                "The sticker has been sent to the admins, please wait for approval.")
+    else:
+        await message.reply("Если вы хотите отправить стикер на модерацию - пишите в личные сообщения с ботом.\n\n"
+                            "If you want to send an sticker for moderation - write in private messages with the bot.")
 
 @dp.message_handler(commands=["ok"])
 async def ok(message: types.Message):
