@@ -17,7 +17,7 @@ async def start(message: types.Message):
             "Sup\n"
             "This bot is made for the @LoonaHellBossArt channel.\n"
             "Send me the art and I'll send it for moderation.\n")
-    await bot.send_video(message.from_user.id, cap, "BAACAgQAAxkBAAEP_9VikTNA7-WxLJbI9GFEmNHh2tSjSAAC7wIAAhl_XFAv-r3WpnhnVSQE")
+    await bot.send_video(message.from_user.id, "BAACAgQAAxkBAAEP_9VikTNA7-WxLJbI9GFEmNHh2tSjSAAC7wIAAhl_XFAv-r3WpnhnVSQE", cap)
 
 @dp.message_handler(content_types=["photo"])
 async def photo(message: types.Message):
