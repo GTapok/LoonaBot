@@ -10,14 +10,8 @@ users.createDB()
 
 @dp.message_handler(commands=["start"])
 async def start(message: types.Message):
-    cap = ("Привет!\n"
-            "Этот бот сделан для канала @LoonaHellBossArt.\n"
-            "Пришли мне арт, и я отправлю его на модерацию.\n"
-            "\n"
-            "Sup\n"
-            "This bot is made for the @LoonaHellBossArt channel.\n"
-            "Send me the art and I'll send it for moderation.\n")
-    await bot.send_video(message.from_user.id, "BAACAgQAAxkBAAEP_9VikTNA7-WxLJbI9GFEmNHh2tSjSAAC7wIAAhl_XFAv-r3WpnhnVSQE", cap)
+    cap = "Привет!\nЭтот бот сделан для канала @LoonaHellBossArt.\nПришли мне арт, и я отправлю его на модерацию.\n\nSup\nThis bot is made for the @LoonaHellBossArt channel.\nSend me the art and I'll send it for moderation.\n"
+    await bot.send_video(message.from_user.id, "BAACAgQAAxkBAAEP_9VikTNA7-WxLJbI9GFEmNHh2tSjSAAC7wIAAhl_XFAv-r3WpnhnVSQE", caption=cap)
 
 @dp.message_handler(content_types=["photo"])
 async def photo(message: types.Message):
