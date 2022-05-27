@@ -28,7 +28,7 @@ async def photo(message: types.Message):
             await bot.send_photo(795071883, foto, caption=cap)
             await message.reply("Фото было отправлено админам, ожидайте одобрения.\n\n"
                                 "The photo has been sent to the admins, please wait for approval.")
-    else:
+    if message.from_user.id == -1001787348621:
         await message.reply("Если вы хотите отправить арт на модерацию - пишите в личные сообщения с ботом.\n\n"
                             "If you want to send an art for moderation - write in private messages with the bot.")
 
@@ -47,7 +47,7 @@ async def video(message: types.Message):
             await bot.send_video(795071883, foto, caption=cap)
             await message.reply("Видео было отправлено админам, ожидайте одобрения.\n\n"
                                 "The video has been sent to the admins, please wait for approval.")
-    else:
+    if message.from_user.id == -1001787348621:
         await message.reply("Если вы хотите отправить видео на модерацию - пишите в личные сообщения с ботом.\n\n"
                             "If you want to send an video for moderation - write in private messages with the bot.")
 
@@ -66,7 +66,7 @@ async def gif(message: types.Message):
             await bot.send_animation(795071883, gif, caption=cap)
             await message.reply("Гиф было отправлено админам, ожидайте одобрения.\n\n"
                                 "The gif has been sent to the admins, please wait for approval.")
-    else:
+    if message.from_user.id == -1001787348621:
         await message.reply("Если вы хотите отправить гиф на модерацию - пишите в личные сообщения с ботом.\n\n"
                             "If you want to send an gif for moderation - write in private messages with the bot.")
 
@@ -88,7 +88,7 @@ async def send_sticker(message: types.Message):
             await bot.send_message(1527663110, cap)
             await message.reply("Стикер был отправлен админам, ожидайте одобрения.\n\n"
                                 "The sticker has been sent to the admins, please wait for approval.")
-    else:
+    if message.from_user.id == -1001787348621:
         await message.reply("Если вы хотите отправить стикер на модерацию - пишите в личные сообщения с ботом.\n\n"
                             "If you want to send an sticker for moderation - write in private messages with the bot.")
 
