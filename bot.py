@@ -10,18 +10,19 @@ users.createDB()
 
 @dp.message_handler(commands=["start"])
 async def start(message: types.Message):
-    await message.reply("Привет!\n"
-                        "Этот бот сделан для канала @LoonaHellBossArt.\n"
-                        "Пришли мне арт, и я отправлю его на модерацию.\n"
-                        "\n"
-                        "Sup\n"
-                        "This bot is made for the @LoonaHellBossArt channel.\n"
-                        "Send me the art and I'll send it for moderation.\n")
+    cap = ("Привет!\n"
+            "Этот бот сделан для канала @LoonaHellBossArt.\n"
+            "Пришли мне арт, и я отправлю его на модерацию.\n"
+            "\n"
+            "Sup\n"
+            "This bot is made for the @LoonaHellBossArt channel.\n"
+            "Send me the art and I'll send it for moderation.\n")
+    await bot.send_video(message.from_user.id, cap, "BAACAgQAAxkBAAEP_9VikTNA7-WxLJbI9GFEmNHh2tSjSAAC7wIAAhl_XFAv-r3WpnhnVSQE")
 
 @dp.message_handler(content_types=["photo"])
 async def photo(message: types.Message):
     if message.from_user.id == message.chat.id:
-        if message.from_user.id == 1527663110 or message.from_user.id == 862085756 or message.from_user.id == 795071883:
+        if message.from_user.id == 1527663110 or message.from_user.id == 795071883:
             foto = message.photo[-1].file_id
             cap = "@LoonaHellBossArt ♡\n<a href='t.me/LoonaArtsBot'>Наш бот - Our bot</a>\n\n#photo"
             await bot.send_photo(-1001787348621, foto, caption=cap)
@@ -30,7 +31,7 @@ async def photo(message: types.Message):
             foto = message.photo[-1].file_id
             cap = f"Фото от пользователя <a href='tg://openmessage?user_id={message.from_user.id}'>{message.from_user.first_name}</a>, @{message.from_user.username}"
             await bot.send_photo(1527663110, foto, caption=cap)
-            await bot.send_photo(862085756, foto, caption=cap)
+            await bot.send_photo(795071883, foto, caption=cap)
             await message.reply("Фото было отправлено админам, ожидайте одобрения.\n\n"
                                 "The photo has been sent to the admins, please wait for approval.")
     else:
@@ -40,7 +41,7 @@ async def photo(message: types.Message):
 @dp.message_handler(content_types=["video"])
 async def video(message: types.Message):
     if message.from_user.id == message.chat.id:
-        if message.from_user.id == 1527663110 or message.from_user.id == 862085756 or message.from_user.id == 795071883:
+        if message.from_user.id == 1527663110 or message.from_user.id == 795071883:
             foto = message.video.file_id
             cap = "@LoonaHellBossArt ♡\n<a href='t.me/LoonaArtsBot'>Наш бот - Our bot</a>\n\n#video"
             await bot.send_video(-1001787348621, foto, caption=cap)
@@ -49,7 +50,7 @@ async def video(message: types.Message):
             foto = message.video.file_id
             cap = f"Видео от пользователя <a href='tg://openmessage?user_id={message.from_user.id}'>{message.from_user.first_name}</a>, @{message.from_user.username}"
             await bot.send_video(1527663110, foto, caption=cap)
-            await bot.send_video(862085756, foto, caption=cap)
+            await bot.send_video(795071883, foto, caption=cap)
             await message.reply("Видео было отправлено админам, ожидайте одобрения.\n\n"
                                 "The video has been sent to the admins, please wait for approval.")
     else:
@@ -59,7 +60,7 @@ async def video(message: types.Message):
 @dp.message_handler(content_types=["animation"])
 async def gif(message: types.Message):
     if message.from_user.id == message.chat.id:
-        if message.from_user.id == 1527663110 or message.from_user.id == 862085756 or message.from_user.id == 795071883:
+        if message.from_user.id == 1527663110 or message.from_user.id == 795071883:
             gif = message.animation.file_id
             cap = "@LoonaHellBossArt ♡\n<a href='t.me/LoonaArtsBot'>Наш бот - Our bot</a>\n\n#gif"
             await bot.send_animation(-1001787348621, gif, caption=cap)
@@ -68,7 +69,7 @@ async def gif(message: types.Message):
             gif = message.animation.file_id
             cap = f"Гиф от пользователя <a href='tg://openmessage?user_id={message.from_user.id}'>{message.from_user.first_name}</a>, @{message.from_user.username}"
             await bot.send_animation(1527663110, gif, caption=cap)
-            await bot.send_animation(862085756, gif, caption=cap)
+            await bot.send_animation(795071883, gif, caption=cap)
             await message.reply("Гиф было отправлено админам, ожидайте одобрения.\n\n"
                                 "The gif has been sent to the admins, please wait for approval.")
     else:
@@ -78,7 +79,7 @@ async def gif(message: types.Message):
 @dp.message_handler(content_types=["sticker"])
 async def send_sticker(message: types.Message):
     if message.from_user.id == message.chat.id:
-        if message.from_user.id == 1527663110 or message.from_user.id == 862085756 or message.from_user.id == 795071883:
+        if message.from_user.id == 1527663110 or message.from_user.id == 795071883:
             stick = message.sticker.file_id
             cap = "@LoonaHellBossArt ♡\n<a href='t.me/LoonaArtsBot'>Наш бот - Our bot</a>\n\n#sticker"
             a = await bot.send_sticker(-1001787348621, stick)
@@ -90,7 +91,7 @@ async def send_sticker(message: types.Message):
             await bot.send_sticker(1527663110, st)
             await bot.send_sticker(862085756, st)
             await bot.send_message(862085756, cap)
-            await bot.send_video(1527663110, cap)
+            await bot.send_message(1527663110, cap)
             await message.reply("Стикер был отправлен админам, ожидайте одобрения.\n\n"
                                 "The sticker has been sent to the admins, please wait for approval.")
     else:
@@ -99,7 +100,7 @@ async def send_sticker(message: types.Message):
 
 @dp.message_handler(commands=["ok"])
 async def ok(message: types.Message):
-    if message.from_user.id == 1527663110 or message.from_user.id == 862085756 or message.from_user.id == 795071883:
+    if message.from_user.id == 1527663110 or message.from_user.id == 795071883:
         if message.reply_to_message.photo:
             try:
                 document_id = message.reply_to_message.photo[0].file_id
