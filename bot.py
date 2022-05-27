@@ -28,7 +28,7 @@ async def photo(message: types.Message):
             await bot.send_photo(795071883, foto, caption=cap)
             await message.reply("Фото было отправлено админам, ожидайте одобрения.\n\n"
                                 "The photo has been sent to the admins, please wait for approval.")
-    if message.from_user.id == -1001787348621:
+    if message.from_user.id == 136817688:
         await message.reply("Если вы хотите отправить арт на модерацию - пишите в личные сообщения с ботом.\n\n"
                             "If you want to send an art for moderation - write in private messages with the bot.")
 
