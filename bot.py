@@ -1,9 +1,10 @@
 from aiogram import Bot, Dispatcher, types, executor
 import users
+import cnfg
 
-token = "5382560973:AAGUFXivpUC8MrH-v61_JBRmIrMdXa8swME"
+#token = "5382560973:AAGUFXivpUC8MrH-v61_JBRmIrMdXa8swME"
 
-bot = Bot(token=token, parse_mode='html')
+bot = Bot(token=cnfg.token, parse_mode='html')
 dp = Dispatcher(bot)
 
 users.createDB()
