@@ -1,3 +1,4 @@
 cnfg.py
 .idea/
 venv
+__pycache__/
