@@ -1,8 +1,8 @@
-from aiogram import Bot, Dispatcher, types, executor
+﻿from aiogram import Bot, Dispatcher, types, executor
 import users
 import cnfg
 
-#token = "5382560973:AAGUFXivpUC8MrH-v61_JBRmIrMdXa8swME"
+#token = "а фиг"
 
 bot = Bot(token=cnfg.token, parse_mode='html')
 dp = Dispatcher(bot)
