@@ -111,6 +111,7 @@ async def ok(message: types.Message):
     else:
         await message.reply("Не админ")
 
+
 @dp.message_handler(commands=["ok"])
 async def ok(message: types.Message):
     if message.from_user.id == cnfg.adm1 or message.from_user.id == cnfg.adm2:
