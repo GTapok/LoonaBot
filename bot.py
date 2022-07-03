@@ -17,7 +17,7 @@ async def start(message: types.Message):
 @dp.message_handler(content_types=["photo"])
 async def photo(message: types.Message):
     if message.from_user.id == message.chat.id:
-        if message.from_user.id == 1527663110 or message.from_user.id == 805440031:
+        if message.from_user.id == cnfg.adm1 or message.from_user.id == cnfg.adm2:
             foto = message.photo[-1].file_id
             cap = "@LoonaHellBossArt ♡\n<a href='t.me/LoonaArtsBot'>Наш бот - Our bot</a>\n\n#photo"
             await bot.send_photo(-1001787348621, foto, caption=cap)
@@ -36,7 +36,7 @@ async def photo(message: types.Message):
 @dp.message_handler(content_types=["video"])
 async def video(message: types.Message):
     if message.from_user.id == message.chat.id:
-        if message.from_user.id == 1527663110 or message.from_user.id == 805440031:
+        if message.from_user.id == cnfg.adm1 or message.from_user.id == cnfg.adm2:
             foto = message.video.file_id
             cap = "@LoonaHellBossArt ♡\n<a href='t.me/LoonaArtsBot'>Наш бот - Our bot</a>\n\n#video"
             await bot.send_video(-1001787348621, foto, caption=cap)
@@ -55,7 +55,7 @@ async def video(message: types.Message):
 @dp.message_handler(content_types=["animation"])
 async def gif(message: types.Message):
     if message.from_user.id == message.chat.id:
-        if message.from_user.id == 1527663110 or message.from_user.id == 805440031:
+        if message.from_user.id == cnfg.adm1 or message.from_user.id == cnfg.adm2:
             gif = message.animation.file_id
             cap = "@LoonaHellBossArt ♡\n<a href='t.me/LoonaArtsBot'>Наш бот - Our bot</a>\n\n#gif"
             await bot.send_animation(-1001787348621, gif, caption=cap)
@@ -74,7 +74,7 @@ async def gif(message: types.Message):
 @dp.message_handler(content_types=["sticker"])
 async def send_sticker(message: types.Message):
     if message.from_user.id == message.chat.id:
-        if message.from_user.id == 1527663110 or message.from_user.id == 805440031:
+        if message.from_user.id == cnfg.adm1 or message.from_user.id == cnfg.adm2:
             stick = message.sticker.file_id
             cap = "@LoonaHellBossArt ♡\n<a href='t.me/LoonaArtsBot'>Наш бот - Our bot</a>\n\n#sticker"
             a = await bot.send_sticker(-1001787348621, stick)
@@ -95,7 +95,7 @@ async def send_sticker(message: types.Message):
 
 @dp.message_handler(commands=["ok"])
 async def ok(message: types.Message):
-    if message.from_user.id == 1527663110 or message.from_user.id == 805440031:
+    if message.from_user.id == cnfg.adm1 or message.from_user.id == cnfg.adm2:
         if message.reply_to_message.photo:
             try:
                 document_id = message.reply_to_message.photo[0].file_id
