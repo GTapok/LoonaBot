@@ -2,17 +2,24 @@
 import users
 import cnfg
 
-#token = "а фиг"
+# token = "а фиг"
 
 bot = Bot(token=cnfg.token, parse_mode='html')
 dp = Dispatcher(bot)
 
 users.createDB()
 
+
 @dp.message_handler(commands=["start"])
 async def start(message: types.Message):
-    cap = "Привет!\nЭтот бот сделан для канала @LoonaHellBossArt.\nПришли мне арт, и я отправлю его на модерацию.\n\nSup\nThis bot is made for the @LoonaHellBossArt channel.\nSend me the art and I'll send it for moderation.\n"
-    await bot.send_video(message.from_user.id, "BAACAgQAAxkBAAEP_9VikTNA7-WxLJbI9GFEmNHh2tSjSAAC7wIAAhl_XFAv-r3WpnhnVSQE", caption=cap)
+    cap = "Привет!\nЭтот бот сделан для канала @LoonaHellBossArt.\n" \
+          "Пришли мне арт, и я отправлю его на модерацию." \
+          "\n\nSup\nThis bot is made for the @LoonaHellBossArt channel." \
+          "\nSend me the art and I'll send it for moderation.\n"
+    await bot.send_video(message.from_user.id,
+                         "BAACAgQAAxkBAAEP_9VikTNA7-WxLJbI9GFEmNHh2tSjSAAC7wIAAhl_XFAv-r3WpnhnVSQE",
+                         caption=cap)
+
 
 @dp.message_handler(content_types=["photo"])
 async def photo(message: types.Message):
@@ -33,6 +40,7 @@ async def photo(message: types.Message):
         await message.reply("Если вы хотите отправить арт на модерацию - пишите в личные сообщения с ботом.\n\n"
                             "If you want to send an art for moderation - write in private messages with the bot.")
 
+
 @dp.message_handler(content_types=["video"])
 async def video(message: types.Message):
     if message.from_user.id == message.chat.id:
@@ -52,6 +60,7 @@ async def video(message: types.Message):
         await message.reply("Если вы хотите отправить видео на модерацию - пишите в личные сообщения с ботом.\n\n"
                             "If you want to send an video for moderation - write in private messages with the bot.")
 
+
 @dp.message_handler(content_types=["animation"])
 async def gif(message: types.Message):
     if message.from_user.id == message.chat.id:
@@ -70,6 +79,7 @@ async def gif(message: types.Message):
     if message.from_user.id == -1001787348621:
         await message.reply("Если вы хотите отправить гиф на модерацию - пишите в личные сообщения с ботом.\n\n"
                             "If you want to send an gif for moderation - write in private messages with the bot.")
+
 
 @dp.message_handler(content_types=["sticker"])
 async def send_sticker(message: types.Message):
@@ -92,6 +102,14 @@ async def send_sticker(message: types.Message):
     if message.from_user.id == -1001787348621:
         await message.reply("Если вы хотите отправить стикер на модерацию - пишите в личные сообщения с ботом.\n\n"
                             "If you want to send an sticker for moderation - write in private messages with the bot.")
+
+
+@dp.message_handler(commands=["adm"])
+async def ok(message: types.Message):
+    if message.reply_to_message.from_user.id == cnfg.adm1 or message.reply_to_message.from_user.id == cnfg.adm2:
+        await message.reply("Админ")
+    else:
+        await message.reply("Не админ")
 
 @dp.message_handler(commands=["ok"])
 async def ok(message: types.Message):
